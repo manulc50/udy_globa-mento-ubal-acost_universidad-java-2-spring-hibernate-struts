@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Configuración de Log4j -->
+
+<!-- Establecemos el nivel "INFO" del log -->
+<Configuration status="INFO">
+	<Appenders>
+		<!-- Definimos un Appender de tipo Consola para que los logs se muestren en la consola de Java -->
+		<Console name="Console" target="SYSTEM_OUT">
+			<!-- Los logs se mostrarán usando este patrón -->
+			<PatternLayout pattern="%d{HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+	</Appenders>
+	<Loggers>
+		<!-- Habilitamos el log para las clases del paquete "org.hibernate.SQL" usando el nivel "debug"(Para ver la información de las consultas SQL) -->
+		<!-- El atributo "additivity" puesto a false es para que no se duplique la información en el archivo de logs -->
+		<Logger name="org.hibernate.SQL" level="debug" additivity="false">
+			<!-- Asociamos este Logger con el Appender "Console"  -->
+			<AppenderRef ref="Console" />
+		</Logger>
+		<!-- Habilitamos el log para las clases del paquete "org.hibernate.type.descriptor.sql.BasicBinder" usando el nivel "trace"(Esto hace que podamos ver los parámetros que se pasan a las consultas SQL) -->
+		<!-- El atributo "additivity" puesto a false es para que no se duplique la información en el archivo de logs -->
+		<Logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="trace" additivity="false">
+			<!-- Asociamos este Logger con el Appender "Console"  -->
+			<AppenderRef ref="Console" />
+		</Logger>
+		<!-- Habilitamos el log de otras clases desde la raíz del proyecto en nivel "info -->
+		<Root level="info">
+			<!-- Asociamos este Logger con el Appender "Console"  -->
+			<AppenderRef ref="Console" />
+		</Root>
+	</Loggers>
+</Configuration>

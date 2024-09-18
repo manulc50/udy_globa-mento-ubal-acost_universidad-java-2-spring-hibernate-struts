@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Configuración de Persistencia -->
+
+<persistence version="2.2"
+			 xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+			 					 http://xmlns.jcp.org/xml/ns/persistence_2_2.xsd">
+
+	<!-- Creamos una unidad de persistencia de tipo local porque nuestra base de datos MySQL está en localhost -->
+	<persistence-unit name="HibernatePU" transaction-type="RESOURCE_LOCAL">
+		<!-- Indicamos que el proveedor de JPA es Hibernate -->
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<!-- Indicamos donde están las clases entidad o clases de persistencia -->
+		<class>mx.com.gm.domain.Persona</class>
+		<properties>
+			<!-- Propiedades para la conexión con la base de datos MySQL -->
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/test2?useSSL=true&amp;serverTimezone=UTC"/>
+			<property name="javax.persistence.jdbc.user" value="root"/>
+			<property name="javax.persistence.jdbc.password" value="root"/>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+			<property name="hibernate.show_sql" value="true"/>
+		</properties>
+	</persistence-unit>
+	
+</persistence>
